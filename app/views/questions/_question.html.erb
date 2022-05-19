@@ -1,0 +1,18 @@
+<div class="col-sm-12 col-lg-4 mb-3">
+  <div id="question-id-<%= question.id %>">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">
+          <%= link_to question.title, question_path(question) %>
+          <%= render 'crud_menus', question: question %>
+        </h4>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <%= question.created_at %>
+          </li>
+        </ul>
+        <p class="card-text"><%= question.body %></p>
+      </div>
+    </div>
+  </div>
+</div>
