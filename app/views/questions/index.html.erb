@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-12">
+      <div class="row">
+        <% if @questions.present? %>
+          <%= render @questions %>
+        <% else %>
+          <p>投稿はありません</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
