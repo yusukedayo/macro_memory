@@ -6,7 +6,7 @@ before_action :require_login, only: %i[new create edit update destroy]
   end
 
   def show
-    @comment = Comment.new
+    @answer = Answer.new
   end
 
   def new

@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
     before_action :set_answer, only: %i[edit update destroy]
 
     def create
-        @answer = current_user.answers.build(answer_params)
+        answer = current_user.answers.build(answer_params)
         if answer.save
           redirect_to question_path(answer.question), success: '回答しました'
         else
@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
     end
 
     def answer_params
-        params.require(:answer).permit(:body).merge(post_id: params[:post_id])
+        params.require(:answer).permit(:body).merge(question_id: params[:question_id])
     end
 
     def answer_update_params
