@@ -1,0 +1,30 @@
+<tr id="answer-<%= answer.id %>">
+  <td>
+    <h3 class="small"><%= answer.user.name %></h3>
+    <div id="js-answer-<%= answer.id %>">
+      <%= simple_format(answer.body) %>
+    </div>
+    <div id="js-textarea-answer-box-<%= answer.id %>" style="display: none;">
+      <textarea id="js-textarea-answer-<%= answer.id %>" class="form-control mb-1"><%= answer.body %></textarea>
+      <button class="btn btn-light js-button-edit-answer-cancel" data-answer-id="<%= answer.id %>">キャンセル</button>
+      <button class="btn btn-success js-button-answer-update" data-answer-id="<%= answer.id %>">更新</button>
+    </div>
+  </td>
+
+  <% if current_user.own?(answer) %>
+    <td class="action">
+      <ul class="list-inline justify-content-center" style="float: right;">
+        <li class="list-inline-item">
+          <%= link_to edit_question_answer_path(answer) do %>
+            <p>編集</p>
+          <% end %>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to question_answer_path(answer), method: :delete, data: { confirm: '本当に削除しますか？' } do %>
+            <p>削除</p>
+          <% end %>
+        </li>
+      </ul>
+    </td>
+  <% end %>
+</tr>

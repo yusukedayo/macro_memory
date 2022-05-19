@@ -5,24 +5,33 @@ class AnswersController < ApplicationController
     def create
         answer = current_user.answers.build(answer_params)
         if answer.save
-          redirect_to question_path(answer.question), success: '回答しました'
+          redirect_to answer_question_answer_path(answer.question, answer), success: '回答しました'
         else
           redirect_to question_path(answer.question), success: '回答できませんでした'
         end
     end
 
-    def edit; end
+    def edit
+      @question = Question.find(@answer.question.id)
+    end
 
     def update
         @answer.update(answer_update_params)
+        redirect_to question_path(@answer.question)
     end
 
     def destroy
         @answer.destroy!
+        redirect_to question_path(@answer.question)
+    end
+
+    def answer
+      answer = Answer.find(params[:id])
+      @question = Question.find(answer.question.id)
+      @answers = @question.answers.includes(:user).order(created_at: :desc)
     end
 
     private
-
     def set_answer
       @answer = current_user.answers.find(params[:id])
     end
