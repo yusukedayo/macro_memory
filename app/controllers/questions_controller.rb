@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
 before_action :set_question, only: [:show, :edit, :update, :destroy]
 before_action :require_login, only: %i[new create edit update destroy]
   def index
-    @questons = Question.all.order(created_at: :desc)
+    @questions = Question.all
   end
 
   def show;end

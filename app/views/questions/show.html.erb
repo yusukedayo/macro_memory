@@ -7,7 +7,7 @@
           <div class='row'>
             <div class='col-md-9'>
               <h3 class="d-inline"><%= @question.title %></h3>
-              <%= render 'crud_menus', question: @tasl %>
+              <%= render 'crud_menus', question: @question %>
             </div>
           </div>
           <p><%= simple_format(@question.body) %></p>
