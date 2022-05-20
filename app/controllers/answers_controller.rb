@@ -3,8 +3,23 @@ class AnswersController < ApplicationController
     before_action :set_answer, only: %i[edit update destroy]
 
     def create
-        answer = current_user.answers.build(answer_params)
-        if answer.save
+        @answer = current_user.answers.build(answer_params)
+        #questionのkeywordを配列にする。
+        keywords = Question.find(params[:question_id]).keyword.split(',')
+        #配列の要素がそれぞれanswerのbodyに含まれているかを検証する
+        count = 0
+        @forgotten_words = Array.new
+        keywords.each do |keyword|
+        if @answer.body.include? "#{keyword}"
+            count += 1
+        else
+            @forgotten_words.push(keyword)
+        end
+        end
+        #正答率をインスタンス変数に渡す
+        @answer.forgotten_words = @forgotten_words
+        @answer.correct_rate = count/keywords.count.to_f * 100
+        if @answer.save
           redirect_to answer_question_answers_path, success: '回答しました'
         else
           redirect_to question_path(answer.question), success: '回答できませんでした'
