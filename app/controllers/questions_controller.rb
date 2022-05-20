@@ -43,7 +43,7 @@ before_action :require_login, only: %i[new create edit update destroy]
 private
 
   def question_params
-    params.require(:question).permit(:title, :body, :hint, :keyword)
+    params.require(:question).permit(:title, :body, :hint, :keyword, :correct_answer)
   end
   def set_question
   	@question = current_user.questions.find(params[:id])
