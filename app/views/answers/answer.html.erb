@@ -6,19 +6,27 @@
       <article class="card">
         <div class="card-body">
           <div class='row'>
-            <div class='col-md-9'>
-              <h3 class="d-inline"><%= @question.title %></h3>
+            <div class='col-md-12 pb-3'>
+              <h4 class='border-bottom'>タイトル</h4>
+              <h5 class="d-inline"><%= @question.title %></h5>
+            </div>
+            <div class='col-md-12 pb-3'>
+              <h4 class='border-bottom'>問題文</h4>
+              <h5 class="d-inline"><%= simple_format(@question.body) %></h5>
+            </div>
+            <div class='col-md-12 pb-3'>
+              <h4 class='border-bottom'>模範回答</h4>
+              <h5 class="d-inline"><%= simple_format(@question.correct_answer) %></h5>
             </div>
           </div>
-          <p><%= simple_format(@question.body) %></p>
         </div>
       </article>
     </div>
   </div>
   <div class="row">
-  <div class="col-lg-8 offset-lg-2">
-    <table id="js-table-comment" class="table">
-      <%= render @answers %>
+  <div class="col-lg-8 offset-lg-2 ">
+    <table class="table">
+      <%= render partial: "answer", collection: @answers%>
     </table>
   </div>
 </div>
