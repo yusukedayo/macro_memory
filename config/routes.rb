@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :questions do
     resources :answers, only: %i[create edit destroy update] do
-      member do
+      collection do
       get 'answer'
       end
     end
