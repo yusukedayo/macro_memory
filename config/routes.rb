@@ -9,5 +9,11 @@ Rails.application.routes.draw do
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
   resources :users, only: %i[new create]
-  resources :questions
+  resources :questions do
+    resources :answers, only: %i[create edit destroy update] do
+      collection do
+      get 'answer'
+      end
+    end
+  end
 end

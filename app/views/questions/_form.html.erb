@@ -5,11 +5,15 @@
   </div>
   <div class="form-group">
     <%= f.label :body %>
-    <%= f.text_field :body, class: 'form-control', rows: 10 %>
+    <%= f.text_area :body, class: 'form-control', rows: 5%>
   </div>
   <div class="form-group">
     <%= f.label :hint %>
-    <%= f.text_area :hint, class: 'form-control', rows: 10 %>
+    <%= f.text_area :hint, class: 'form-control', rows: 2 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :correct_answer %>
+    <%= f.text_area :correct_answer, class: 'form-control', rows: 8%>
   </div>
   <div class="form-group">
     <%= f.label :keyword %>

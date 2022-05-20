@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_19_105320) do
+ActiveRecord::Schema.define(version: 2022_05_20_045351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "correct_rate"
+    t.string "forgotten_words"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.string "title", null: false
@@ -23,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_05_19_105320) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.text "correct_answer", null: false
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -36,5 +49,7 @@ ActiveRecord::Schema.define(version: 2022_05_19_105320) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "questions", "users"
 end
