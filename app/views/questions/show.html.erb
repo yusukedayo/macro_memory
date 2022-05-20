@@ -7,11 +7,11 @@
         <div class="card-body">
           <div class='row'>
             <div class='col-md-9'>
-              <h3 class="d-inline"><%= @question.title %></h3>
+              <h4 class="d-inline"><%= @question.title %></h4>
               <%= render 'crud_menus', question: @question %>
             </div>
           </div>
-          <p><%= simple_format(@question.body) %></p>
+          <h5><%= simple_format(@question.body) %></h5>
         </div>
       </article>
     </div>
